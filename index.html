@@ -1,54 +1,101 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>My Cool Website</title>
+  <meta charset="UTF-8">
+  <title>My Portfolio</title>
 
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: linear-gradient(to right, #4facfe, #00f2fe);
-      color: white;
+      scroll-behavior: smooth;
+    }
+
+    /* Navigation bar */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #111;
+      padding: 15px;
       text-align: center;
     }
 
-    .container {
-      padding-top: 100px;
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
     }
+
+    nav a:hover {
+      color: #00c3ff;
+    }
+
+    /* Sections */
+    section {
+      padding: 100px 20px;
+      min-height: 100vh;
+    }
+
+    #about { background: #f4f4f4; }
+    #engineering { background: #e8f4ff; }
+    #personal { background: #f4f8ff; }
+    #resume { background: #fff3e8; }
 
     h1 {
-      font-size: 50px;
-      margin-bottom: 10px;
+      margin-top: 0;
     }
 
-    p {
-      font-size: 20px;
-    }
-
-    button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-
-    button:hover {
-      background: black;
-      color: white;
+    .container {
+      max-width: 900px;
+      margin: auto;
+      text-align: center;
     }
   </style>
 </head>
 
 <body>
-  <div class="container">
-    <h1>Welcome 👋</h1>
-    <p>This is my GitHub Pages website</p>
 
-    <button onclick="alert('You clicked the button!')">
-      Click Me
-    </button>
+<!-- Navigation -->
+<nav>
+  <a href="#about">About Me</a>
+  <a href="#engineering">Engineering Projects</a>
+  <a href="#personal">Personal Projects</a>
+  <a href="#resume">Resume</a>
+</nav>
+
+<!-- About Me -->
+<section id="about">
+  <div class="container">
+    <h1>About Me</h1>
+    <p>Hi! I’m a student/engineer building projects and learning new skills.</p>
   </div>
+</section>
+
+<!-- Engineering Projects -->
+<section id="engineering">
+  <div class="container">
+    <h1>Engineering Projects</h1>
+    <p>List your engineering-related projects here (robots, coding, etc.).</p>
+  </div>
+</section>
+
+<!-- Personal Projects -->
+<section id="personal">
+  <div class="container">
+    <h1>Personal Projects</h1>
+    <p>Anything fun or creative you’ve built goes here.</p>
+  </div>
+</section>
+
+<!-- Resume -->
+<section id="resume">
+  <div class="container">
+    <h1>Resume</h1>
+    <p>Add your experience, skills, or even a link to a PDF resume.</p>
+  </div>
+</section>
+
 </body>
 </html>
