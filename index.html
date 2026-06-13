@@ -1,101 +1,271 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>My Portfolio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      scroll-behavior: smooth;
-    }
+<title>Your Name | Portfolio</title>
 
-    /* Navigation bar */
-    nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: #111;
-      padding: 15px;
-      text-align: center;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
-    nav a {
-      color: white;
-      margin: 0 15px;
-      text-decoration: none;
-      font-weight: bold;
-    }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    nav a:hover {
-      color: #00c3ff;
-    }
+html {
+    scroll-behavior: smooth;
+}
 
-    /* Sections */
-    section {
-      padding: 100px 20px;
-      min-height: 100vh;
-    }
+body {
+    font-family: 'Inter', sans-serif;
+    background: #f8f9fa;
+    color: #222;
+    transition: all 0.3s ease;
+}
 
-    #about { background: #f4f4f4; }
-    #engineering { background: #e8f4ff; }
-    #personal { background: #f4f8ff; }
-    #resume { background: #fff3e8; }
+/* Dark Mode */
+body.dark {
+    background: #121212;
+    color: white;
+}
 
-    h1 {
-      margin-top: 0;
-    }
+body.dark .card {
+    background: #1f1f1f;
+    color: white;
+}
 
-    .container {
-      max-width: 900px;
-      margin: auto;
-      text-align: center;
-    }
-  </style>
+body.dark nav {
+    background: rgba(0,0,0,0.95);
+}
+
+/* Navbar */
+nav {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    background: rgba(20,20,20,0.95);
+    padding: 18px;
+    text-align: center;
+    z-index: 1000;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: 600;
+}
+
+nav a:hover {
+    color: #00c3ff;
+}
+
+.dark-toggle {
+    position: fixed;
+    right: 20px;
+    top: 15px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* Hero Section */
+.hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    padding: 20px;
+}
+
+.hero h1 {
+    font-size: 4rem;
+}
+
+.hero p {
+    font-size: 1.3rem;
+    margin-top: 10px;
+}
+
+.hero .button {
+    margin-top: 25px;
+    padding: 12px 24px;
+    background: white;
+    color: black;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Sections */
+section {
+    padding: 100px 20px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.2rem;
+}
+
+/* Project Cards */
+.card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    transition: transform .2s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card a {
+    color: #0077cc;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Resume Button */
+.resume-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 20px;
+    background: #0077cc;
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 40px;
+    background: #111;
+    color: white;
+}
+</style>
 </head>
 
 <body>
 
-<!-- Navigation -->
 <nav>
-  <a href="#about">About Me</a>
-  <a href="#engineering">Engineering Projects</a>
-  <a href="#personal">Personal Projects</a>
-  <a href="#resume">Resume</a>
+    <a href="#about">About Me</a>
+    <a href="#engineering">Engineering Projects</a>
+    <a href="#personal">Personal Projects</a>
+    <a href="#resume">Resume</a>
+    <a href="#contact">Contact</a>
 </nav>
 
-<!-- About Me -->
+<button class="dark-toggle" onclick="toggleDark()">
+    🌙
+</button>
+
+<div class="hero">
+    <h1>Your Name</h1>
+    <p>Engineering Student • Builder • Creator</p>
+
+    <a href="#about" class="button">
+        Learn More
+    </a>
+</div>
+
 <section id="about">
-  <div class="container">
-    <h1>About Me</h1>
-    <p>Hi! I’m a student/engineer building projects and learning new skills.</p>
-  </div>
+    <div class="container">
+        <h2>About Me</h2>
+
+        <p>
+            Write a short introduction here. Talk about your engineering
+            interests, what you're studying, your goals, and what you enjoy building.
+        </p>
+    </div>
 </section>
 
-<!-- Engineering Projects -->
 <section id="engineering">
-  <div class="container">
-    <h1>Engineering Projects</h1>
-    <p>List your engineering-related projects here (robots, coding, etc.).</p>
-  </div>
+    <div class="container">
+        <h2>Engineering Projects</h2>
+
+        <div class="card">
+            <h3>Project 1</h3>
+            <p>Description of your engineering project.</p>
+            <a href="#">GitHub Link</a>
+        </div>
+
+        <div class="card">
+            <h3>Project 2</h3>
+            <p>Description of your engineering project.</p>
+            <a href="#">GitHub Link</a>
+        </div>
+    </div>
 </section>
 
-<!-- Personal Projects -->
 <section id="personal">
-  <div class="container">
-    <h1>Personal Projects</h1>
-    <p>Anything fun or creative you’ve built goes here.</p>
-  </div>
+    <div class="container">
+        <h2>Personal Projects</h2>
+
+        <div class="card">
+            <h3>Personal Project 1</h3>
+            <p>Description of a side project.</p>
+            <a href="#">Learn More</a>
+        </div>
+
+        <div class="card">
+            <h3>Personal Project 2</h3>
+            <p>Description of a side project.</p>
+            <a href="#">Learn More</a>
+        </div>
+    </div>
 </section>
 
-<!-- Resume -->
 <section id="resume">
-  <div class="container">
-    <h1>Resume</h1>
-    <p>Add your experience, skills, or even a link to a PDF resume.</p>
-  </div>
+    <div class="container">
+        <h2>Resume</h2>
+
+        <p>
+            You can upload your resume PDF to GitHub later and link it here.
+        </p>
+
+        <a href="#" class="resume-btn">
+            View Resume
+        </a>
+    </div>
 </section>
+
+<section id="contact">
+    <div class="container">
+        <h2>Contact</h2>
+
+        <p>Email: youremail@example.com</p>
+        <p>LinkedIn: Add your LinkedIn URL</p>
+        <p>GitHub: Add your GitHub URL</p>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 Your Name</p>
+</footer>
+
+<script>
+function toggleDark() {
+    document.body.classList.toggle("dark");
+}
+</script>
 
 </body>
 </html>
