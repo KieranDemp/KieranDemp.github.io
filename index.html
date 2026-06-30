@@ -20,7 +20,7 @@ html{
     scroll-behavior:smooth;
 }
 
-body{
+{
     font-family:'Inter',sans-serif;
     background:#0f172a;
     color:#e2e8f0;
@@ -283,10 +283,73 @@ footer{
 .light .hero{
     color:white;
 }
+.bg-blobs {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+}
 
+/* base blob style */
+.blob {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+
+    filter: blur(80px);
+    opacity: 0.35;
+
+    animation: float 18s ease-in-out infinite;
+}
+
+/* LEFT SIDE */
+.b1 {
+    background: radial-gradient(circle, #2563eb, transparent 60%);
+    top: 10%;
+    left: -200px;
+}
+
+/* RIGHT TOP */
+.b2 {
+    background: radial-gradient(circle, #7c3aed, transparent 60%);
+    top: 20%;
+    right: -250px;
+    animation-duration: 22s;
+}
+
+/* RIGHT BOTTOM */
+.b3 {
+    background: radial-gradient(circle, #06b6d4, transparent 60%);
+    bottom: -200px;
+    right: -150px;
+    animation-duration: 26s;
+}
+
+/* motion */
+@keyframes float {
+    0% {
+        transform: translateY(0px) scale(1);
+    }
+    50% {
+        transform: translateY(-40px) scale(1.05);
+    }
+    100% {
+        transform: translateY(0px) scale(1);
+    }
+}
+
+    body {
+    position: relative;
+}
+    
 </style>
 </head>
-
+<div class="bg-blobs">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+</div>
 <body>
 
 <button class="dark-toggle" onclick="toggleTheme()">🌙</button>
