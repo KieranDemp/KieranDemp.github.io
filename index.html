@@ -10,9 +10,9 @@
 
 <style>
 
-/* =====================
+/* =========================
    BASE
-===================== */
+========================= */
 
 * {
     margin: 0;
@@ -27,62 +27,51 @@ html {
 body {
     font-family: 'Inter', sans-serif;
     background: #ffffff;
-    color: #111827;
+    color: #0f172a;
     line-height: 1.6;
-    position: relative;
     overflow-x: hidden;
 }
 
-/* =====================
-   LIQUID BACKGROUND
-===================== */
+/* =========================
+   SUBTLE LIQUID SIDES (NEW)
+   - more “premium tech product”
+   - less colorful blob chaos
+========================= */
 
-.bg-blobs {
+.liquid-side {
     position: fixed;
-    inset: 0;
+    top: 0;
+    width: 420px;
+    height: 100vh;
     z-index: -1;
-    overflow: hidden;
-}
-
-.blob {
-    position: absolute;
-    width: 520px;
-    height: 520px;
-    border-radius: 50%;
-    filter: blur(90px);
+    filter: blur(80px);
     opacity: 0.35;
-    animation: float 20s ease-in-out infinite;
+    pointer-events: none;
 }
 
-.b1 {
-    background: radial-gradient(circle, #2563eb, transparent 60%);
-    top: 10%;
-    left: -220px;
+.liquid-left {
+    left: -200px;
+    background: radial-gradient(circle at 30% 30%, rgba(37,99,235,0.25), transparent 60%),
+                radial-gradient(circle at 70% 60%, rgba(99,102,241,0.18), transparent 65%);
+    animation: drift 18s ease-in-out infinite;
 }
 
-.b2 {
-    background: radial-gradient(circle, #7c3aed, transparent 60%);
-    top: 25%;
-    right: -260px;
-    animation-duration: 26s;
+.liquid-right {
+    right: -220px;
+    background: radial-gradient(circle at 40% 40%, rgba(14,165,233,0.22), transparent 60%),
+                radial-gradient(circle at 60% 70%, rgba(168,85,247,0.15), transparent 65%);
+    animation: drift 22s ease-in-out infinite reverse;
 }
 
-.b3 {
-    background: radial-gradient(circle, #06b6d4, transparent 60%);
-    bottom: -220px;
-    right: -180px;
-    animation-duration: 30s;
-}
-
-@keyframes float {
+@keyframes drift {
     0%   { transform: translateY(0px) scale(1); }
-    50%  { transform: translateY(-40px) scale(1.05); }
+    50%  { transform: translateY(-35px) scale(1.05); }
     100% { transform: translateY(0px) scale(1); }
 }
 
-/* =====================
-   NAVBAR
-===================== */
+/* =========================
+   NAVBAR (more premium)
+========================= */
 
 nav {
     position: fixed;
@@ -92,29 +81,30 @@ nav {
 
     display: flex;
     justify-content: center;
-    gap: 40px;
+    gap: 34px;
 
     padding: 18px 0;
 
-    background: rgba(255,255,255,0.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid #e5e7eb;
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(15, 23, 42, 0.06);
 }
 
 nav a {
     text-decoration: none;
-    color: #111827;
-    font-size: 14px;
+    color: #334155;
+    font-size: 13px;
     font-weight: 500;
+    transition: 0.2s ease;
 }
 
 nav a:hover {
     color: #2563eb;
 }
 
-/* =====================
-   HERO
-===================== */
+/* =========================
+   HERO (more “product landing page”)
+========================= */
 
 .hero {
     min-height: 100vh;
@@ -123,42 +113,41 @@ nav a:hover {
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 20px;
+    padding: 0 20px;
 }
 
 .hero h1 {
-    font-size: 58px;
-    font-weight: 700;
-    letter-spacing: -1px;
+    font-size: 62px;
+    font-weight: 650;
+    letter-spacing: -1.5px;
 }
 
 .hero p {
-    margin-top: 12px;
+    margin-top: 14px;
     font-size: 18px;
-    color: #6b7280;
-    max-width: 650px;
+    color: #64748b;
+    max-width: 680px;
 }
 
 .hero-buttons {
-    margin-top: 30px;
+    margin-top: 32px;
 }
 
 .btn {
     display: inline-block;
-    padding: 12px 20px;
+    padding: 11px 18px;
     margin: 6px;
     border-radius: 10px;
     text-decoration: none;
     font-size: 14px;
     font-weight: 500;
-    transition: 0.2s;
-    cursor: pointer;
-    border: none;
+    transition: 0.2s ease;
 }
 
 .primary {
     background: #2563eb;
     color: white;
+    border: 1px solid #2563eb;
 }
 
 .primary:hover {
@@ -166,8 +155,9 @@ nav a:hover {
 }
 
 .secondary {
-    border: 1px solid #d1d5db;
-    color: #111827;
+    background: transparent;
+    border: 1px solid #e2e8f0;
+    color: #0f172a;
 }
 
 .secondary:hover {
@@ -175,86 +165,53 @@ nav a:hover {
     color: #2563eb;
 }
 
-/* =====================
+/* =========================
    SECTIONS
-===================== */
+========================= */
 
 section {
-    padding: 100px 20px;
+    padding: 110px 20px;
 }
 
 .container {
-    max-width: 1000px;
+    max-width: 1050px;
     margin: auto;
 }
 
 h2 {
-    font-size: 28px;
-    margin-bottom: 25px;
+    font-size: 26px;
+    margin-bottom: 22px;
+    letter-spacing: -0.5px;
+    color: #0f172a;
 }
 
-/* =====================
-   CARDS
-===================== */
+/* =========================
+   CARDS (more “Apple-like”)
+========================= */
 
-.card {
-    border: 1px solid #e5e7eb;
-    border-radius: 14px;
+.card, .project-preview {
+    background: rgba(255,255,255,0.8);
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 16px;
     padding: 22px;
-    background: white;
-    transition: 0.2s ease;
-    cursor: pointer;
+    transition: 0.25s ease;
+    backdrop-filter: blur(10px);
 }
 
-.card:hover {
+.card:hover, .project-preview:hover {
     transform: translateY(-6px);
     border-color: #2563eb;
+    box-shadow: 0 20px 40px rgba(37,99,235,0.08);
 }
 
-.card h3 {
-    margin-bottom: 8px;
-    font-size: 18px;
-}
-
-.card p {
-    color: #6b7280;
+.card p, .project-preview p {
+    color: #64748b;
     font-size: 14px;
 }
 
-/* =====================
-   PROJECT PREVIEW
-===================== */
-
-.project-preview {
-    border: 1px solid #e5e7eb;
-    border-radius: 14px;
-    padding: 22px;
-    background: white;
-    transition: 0.2s ease;
-    cursor: pointer;
-}
-
-.project-preview:hover {
-    transform: translateY(-6px);
-    border-color: #2563eb;
-    box-shadow: 0 10px 30px rgba(37, 99, 235, 0.1);
-}
-
-.project-preview h3 {
-    font-size: 18px;
-    margin-bottom: 8px;
-    color: #111827;
-}
-
-.project-preview p {
-    color: #6b7280;
-    font-size: 14px;
-    margin-bottom: 12px;
-}
-
-/* =====================
+/* =========================
    GRID
-===================== */
+========================= */
 
 .grid {
     display: grid;
@@ -262,41 +219,50 @@ h2 {
     gap: 18px;
 }
 
-/* =====================
+/* =========================
    SKILLS
-===================== */
+========================= */
 
 .skills {
-    margin-top: 12px;
+    margin-top: 14px;
 }
 
 .skills span {
     display: inline-block;
     font-size: 12px;
-    padding: 6px 10px;
+    padding: 5px 10px;
     margin: 4px;
     border-radius: 999px;
-    border: 1px solid #e5e7eb;
-    color: #374151;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    color: #475569;
+    background: rgba(248,250,252,0.8);
 }
 
-/* =====================
-   LINKS
-===================== */
-
-a {
-    color: #2563eb;
-}
-
-/* =====================
+/* =========================
    FOOTER
-===================== */
+========================= */
 
 footer {
     text-align: center;
-    padding: 50px;
-    color: #9ca3af;
-    border-top: 1px solid #e5e7eb;
+    padding: 60px;
+    color: #94a3b8;
+    border-top: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+    .hero h1 {
+        font-size: 40px;
+    }
+
+    .liquid-side {
+        width: 260px;
+        opacity: 0.25;
+    }
 }
 
 </style>
@@ -304,12 +270,9 @@ footer {
 
 <body>
 
-<!-- LIQUID BACKGROUND -->
-<div class="bg-blobs">
-    <div class="blob b1"></div>
-    <div class="blob b2"></div>
-    <div class="blob b3"></div>
-</div>
+<!-- LIQUID SIDES (UPDATED) -->
+<div class="liquid-side liquid-left"></div>
+<div class="liquid-side liquid-right"></div>
 
 <!-- NAV -->
 <nav>
@@ -321,18 +284,15 @@ footer {
 
 <!-- HERO -->
 <section class="hero">
-
     <h1>Kieran Dempsey</h1>
-
     <p>
-        Mechanical Engineering Student • Controls • Test Systems • CAD Design
+        Mechanical Engineering • Controls • Test Systems • Medical Device Prototyping
     </p>
 
     <div class="hero-buttons">
         <a href="#projects" class="btn primary">View Projects</a>
         <a href="#resume" class="btn secondary">Resume</a>
     </div>
-
 </section>
 
 <!-- ABOUT -->
@@ -342,9 +302,9 @@ footer {
 
         <div class="card">
             <p>
-                Mechanical Engineering student focused on control systems,
-                test engineering, and physical system design. Experience in
-                medical device prototyping, embedded systems, and experimental validation.
+                Mechanical engineering student focused on control systems, experimental validation,
+                and real-world mechanical design. Experience in medical device testing, embedded systems,
+                and data-driven engineering workflows.
             </p>
 
             <div class="skills">
@@ -365,42 +325,33 @@ footer {
 
         <div class="grid">
 
-            <div class="project-preview" onclick="window.location.href='projects/hologic-fluid-management.html'">
-                <h3>Hologic Fluid Management System</h3>
-                <p>
-                    Closed-loop syringe pump system with real-time pressure feedback
-                    and PID tuning for improved flow stability.
-                </p>
+            <div class="project-preview">
+                <h3>Fluid Control System</h3>
+                <p>Closed-loop syringe pump with real-time pressure feedback and PID tuning.</p>
                 <div class="skills">
-                    <span>PID Control</span>
+                    <span>PID</span>
                     <span>Sensors</span>
-                    <span>Testing</span>
+                    <span>Control</span>
                 </div>
             </div>
 
-            <div class="project-preview" onclick="alert('Coming soon!')">
+            <div class="project-preview">
                 <h3>Sensor Acquisition System</h3>
-                <p>
-                    UART-based pressure sensor interface with CRC validation and
-                    real-time data processing.
-                </p>
+                <p>UART pressure sensor interface with CRC validation and data parsing.</p>
                 <div class="skills">
                     <span>ESP32</span>
+                    <span>UART</span>
                     <span>Embedded</span>
-                    <span>Signals</span>
                 </div>
             </div>
 
-            <div class="project-preview" onclick="alert('Coming soon!')">
+            <div class="project-preview">
                 <h3>Mechanical Test Rig</h3>
-                <p>
-                    Designed and built a custom test apparatus for validating
-                    fluid system performance.
-                </p>
+                <p>Custom test apparatus for validating fluid system performance.</p>
                 <div class="skills">
                     <span>CAD</span>
-                    <span>3D Printing</span>
                     <span>Fabrication</span>
+                    <span>Testing</span>
                 </div>
             </div>
 
@@ -414,7 +365,7 @@ footer {
         <h2>Resume</h2>
 
         <div class="card">
-            <p>Download or view my resume below.</p>
+            <p>Download or view my resume.</p>
             <br>
             <a href="#" class="btn primary">View Resume</a>
         </div>
