@@ -6,13 +6,27 @@
 
 <title>Kieran Dempsey | Engineering Portfolio</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
 
-/* =========================
-   BASE
-========================= */
+/* =====================
+   BASE & VARIABLES
+===================== */
+
+:root {
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --secondary: #7c3aed;
+    --accent: #06b6d4;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --bg-dark: #0f172a;
+    --bg-light: #ffffff;
+    --text-primary: #0f172a;
+    --text-secondary: #64748b;
+    --border: #e2e8f0;
+}
 
 * {
     margin: 0;
@@ -26,52 +40,78 @@ html {
 
 body {
     font-family: 'Inter', sans-serif;
-    background: #ffffff;
-    color: #0f172a;
+    background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 50%, #f0fdf4 100%);
+    color: var(--text-primary);
     line-height: 1.6;
+    position: relative;
     overflow-x: hidden;
+    min-height: 100vh;
 }
 
-/* =========================
-   SUBTLE LIQUID SIDES (NEW)
-   - more “premium tech product”
-   - less colorful blob chaos
-========================= */
+/* =====================
+   ANIMATED BACKGROUND
+===================== */
 
-.liquid-side {
+.bg-animation {
     position: fixed;
-    top: 0;
-    width: 420px;
-    height: 100vh;
-    z-index: -1;
+    inset: 0;
+    z-index: -2;
+    overflow: hidden;
+}
+
+.gradient-orb {
+    position: absolute;
+    border-radius: 50%;
     filter: blur(80px);
-    opacity: 0.35;
-    pointer-events: none;
+    opacity: 0.3;
+    mix-blend-mode: screen;
 }
 
-.liquid-left {
+.orb-1 {
+    width: 600px;
+    height: 600px;
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    top: -200px;
     left: -200px;
-    background: radial-gradient(circle at 30% 30%, rgba(37,99,235,0.25), transparent 60%),
-                radial-gradient(circle at 70% 60%, rgba(99,102,241,0.18), transparent 65%);
-    animation: drift 18s ease-in-out infinite;
+    animation: float1 20s ease-in-out infinite;
 }
 
-.liquid-right {
-    right: -220px;
-    background: radial-gradient(circle at 40% 40%, rgba(14,165,233,0.22), transparent 60%),
-                radial-gradient(circle at 60% 70%, rgba(168,85,247,0.15), transparent 65%);
-    animation: drift 22s ease-in-out infinite reverse;
+.orb-2 {
+    width: 500px;
+    height: 500px;
+    background: linear-gradient(135deg, #06b6d4, #0ea5e9);
+    top: 50%;
+    right: -100px;
+    animation: float2 25s ease-in-out infinite;
 }
 
-@keyframes drift {
-    0%   { transform: translateY(0px) scale(1); }
-    50%  { transform: translateY(-35px) scale(1.05); }
-    100% { transform: translateY(0px) scale(1); }
+.orb-3 {
+    width: 400px;
+    height: 400px;
+    background: linear-gradient(135deg, #7c3aed, #ec4899);
+    bottom: -100px;
+    right: 200px;
+    animation: float3 30s ease-in-out infinite;
 }
 
-/* =========================
-   NAVBAR (more premium)
-========================= */
+@keyframes float1 {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(50px, -50px); }
+}
+
+@keyframes float2 {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(-50px, 50px); }
+}
+
+@keyframes float3 {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(-30px, -30px); }
+}
+
+/* =====================
+   NAVBAR
+===================== */
 
 nav {
     position: fixed;
@@ -81,30 +121,47 @@ nav {
 
     display: flex;
     justify-content: center;
-    gap: 34px;
+    gap: 50px;
 
-    padding: 18px 0;
+    padding: 20px 0;
 
-    background: rgba(255,255,255,0.7);
-    backdrop-filter: blur(14px);
-    border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
 }
 
 nav a {
     text-decoration: none;
-    color: #334155;
-    font-size: 13px;
-    font-weight: 500;
-    transition: 0.2s ease;
+    color: var(--text-primary);
+    font-size: 15px;
+    font-weight: 600;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -8px;
+    left: 0;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+    width: 100%;
 }
 
 nav a:hover {
-    color: #2563eb;
+    color: var(--primary);
 }
 
-/* =========================
-   HERO (more “product landing page”)
-========================= */
+/* =====================
+   HERO SECTION
+===================== */
 
 .hero {
     min-height: 100vh;
@@ -113,155 +170,374 @@ nav a:hover {
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 0 20px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(37, 99, 235, 0.05) 0%, transparent 70%);
+    pointer-events: none;
 }
 
 .hero h1 {
-    font-size: 62px;
-    font-weight: 650;
-    letter-spacing: -1.5px;
+    font-size: 72px;
+    font-weight: 800;
+    letter-spacing: -2px;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: slideUp 0.8s ease-out;
+    font-family: 'Sora', sans-serif;
 }
 
 .hero p {
-    margin-top: 14px;
-    font-size: 18px;
-    color: #64748b;
-    max-width: 680px;
+    margin-top: 20px;
+    font-size: 20px;
+    color: var(--text-secondary);
+    max-width: 700px;
+    animation: slideUp 0.8s ease-out 0.2s both;
+    line-height: 1.6;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .hero-buttons {
-    margin-top: 32px;
+    margin-top: 40px;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: slideUp 0.8s ease-out 0.4s both;
 }
 
 .btn {
-    display: inline-block;
-    padding: 11px 18px;
-    margin: 6px;
-    border-radius: 10px;
+    padding: 14px 32px;
+    border-radius: 12px;
     text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
-    transition: 0.2s ease;
+    font-size: 15px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+    position: relative;
+    overflow: hidden;
 }
 
-.primary {
-    background: #2563eb;
+.btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+}
+
+.btn:hover::before {
+    transform: translateX(100%);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
     color: white;
-    border: 1px solid #2563eb;
+    box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3);
 }
 
-.primary:hover {
-    background: #1d4ed8;
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(37, 99, 235, 0.4);
 }
 
-.secondary {
-    background: transparent;
-    border: 1px solid #e2e8f0;
-    color: #0f172a;
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--primary);
+    border: 2px solid var(--primary);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
-.secondary:hover {
-    border-color: #2563eb;
-    color: #2563eb;
+.btn-secondary:hover {
+    transform: translateY(-3px);
+    background: white;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
 }
 
-/* =========================
+/* =====================
    SECTIONS
-========================= */
+===================== */
 
 section {
-    padding: 110px 20px;
+    padding: 120px 20px;
+    position: relative;
+    z-index: 1;
 }
 
 .container {
-    max-width: 1050px;
+    max-width: 1000px;
     margin: auto;
 }
 
 h2 {
-    font-size: 26px;
-    margin-bottom: 22px;
-    letter-spacing: -0.5px;
-    color: #0f172a;
+    font-size: 42px;
+    font-weight: 800;
+    margin-bottom: 30px;
+    background: linear-gradient(135deg, var(--text-primary) 0%, var(--primary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-family: 'Sora', sans-serif;
 }
 
-/* =========================
-   CARDS (more “Apple-like”)
-========================= */
+/* =====================
+   ABOUT SECTION
+===================== */
 
-.card, .project-preview {
-    background: rgba(255,255,255,0.8);
-    border: 1px solid rgba(15, 23, 42, 0.08);
+.about-card {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.about-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.05), rgba(124, 58, 237, 0.05));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.about-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 30px 80px rgba(37, 99, 235, 0.15);
+}
+
+.about-card:hover::before {
+    opacity: 1;
+}
+
+.about-card p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--text-primary);
+    margin-bottom: 25px;
+}
+
+/* =====================
+   CARDS
+===================== */
+
+.card {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(20px);
+    border: 2px solid transparent;
     border-radius: 16px;
-    padding: 22px;
-    transition: 0.25s ease;
-    backdrop-filter: blur(10px);
+    padding: 28px;
+    background-clip: padding-box;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
-.card:hover, .project-preview:hover {
-    transform: translateY(-6px);
-    border-color: #2563eb;
-    box-shadow: 0 20px 40px rgba(37,99,235,0.08);
+.card::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+    border-radius: 16px;
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.3s ease;
 }
 
-.card p, .project-preview p {
-    color: #64748b;
+.card:hover::before {
+    opacity: 1;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(37, 99, 235, 0.2);
+}
+
+.card h3 {
+    margin-bottom: 12px;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-primary);
+    font-family: 'Sora', sans-serif;
+}
+
+.card p {
+    color: var(--text-secondary);
     font-size: 14px;
+    line-height: 1.6;
 }
 
-/* =========================
+.card-icon {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+/* =====================
    GRID
-========================= */
+===================== */
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 18px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
 }
 
-/* =========================
+/* =====================
    SKILLS
-========================= */
+===================== */
 
 .skills {
-    margin-top: 14px;
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .skills span {
     display: inline-block;
     font-size: 12px;
-    padding: 5px 10px;
-    margin: 4px;
-    border-radius: 999px;
-    border: 1px solid rgba(15, 23, 42, 0.08);
-    color: #475569;
-    background: rgba(248,250,252,0.8);
+    padding: 8px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--primary);
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(124, 58, 237, 0.1));
+    color: var(--primary);
+    font-weight: 600;
+    transition: all 0.3s ease;
 }
 
-/* =========================
+.skills span:hover {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    transform: scale(1.05);
+}
+
+/* =====================
+   SECTION DIVIDER
+===================== */
+
+section {
+    border-bottom: 1px solid rgba(37, 99, 235, 0.1);
+}
+
+section:last-child {
+    border-bottom: none;
+}
+
+/* =====================
+   LINKS
+===================== */
+
+a {
+    color: var(--primary);
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: var(--secondary);
+}
+
+/* =====================
    FOOTER
-========================= */
+===================== */
 
 footer {
     text-align: center;
-    padding: 60px;
-    color: #94a3b8;
-    border-top: 1px solid rgba(15, 23, 42, 0.06);
+    padding: 60px 20px;
+    color: var(--text-secondary);
+    border-top: 1px solid rgba(37, 99, 235, 0.1);
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(20px);
+    font-weight: 500;
 }
 
-/* =========================
-   MOBILE
-========================= */
+/* =====================
+   ANIMATIONS
+===================== */
+
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(37, 99, 235, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(37, 99, 235, 0.5);
+    }
+}
+
+.glow {
+    animation: glow 3s ease-in-out infinite;
+}
+
+/* =====================
+   RESPONSIVE
+===================== */
 
 @media (max-width: 768px) {
-
     .hero h1 {
-        font-size: 40px;
+        font-size: 48px;
     }
 
-    .liquid-side {
-        width: 260px;
-        opacity: 0.25;
+    .hero p {
+        font-size: 16px;
+    }
+
+    h2 {
+        font-size: 32px;
+    }
+
+    nav {
+        gap: 25px;
+        padding: 15px 0;
+    }
+
+    nav a {
+        font-size: 13px;
+    }
+
+    section {
+        padding: 80px 20px;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
     }
 }
 
@@ -270,9 +546,12 @@ footer {
 
 <body>
 
-<!-- LIQUID SIDES (UPDATED) -->
-<div class="liquid-side liquid-left"></div>
-<div class="liquid-side liquid-right"></div>
+<!-- ANIMATED BACKGROUND -->
+<div class="bg-animation">
+    <div class="gradient-orb orb-1"></div>
+    <div class="gradient-orb orb-2"></div>
+    <div class="gradient-orb orb-3"></div>
+</div>
 
 <!-- NAV -->
 <nav>
@@ -285,34 +564,35 @@ footer {
 <!-- HERO -->
 <section class="hero">
     <h1>Kieran Dempsey</h1>
+    
     <p>
-        Mechanical Engineering • Controls • Test Systems • Medical Device Prototyping
+        Mechanical Engineering Student • Controls • Test Systems • CAD Design
     </p>
 
     <div class="hero-buttons">
-        <a href="#projects" class="btn primary">View Projects</a>
-        <a href="#resume" class="btn secondary">Resume</a>
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="#resume" class="btn btn-secondary">Resume</a>
     </div>
 </section>
 
 <!-- ABOUT -->
 <section id="about">
     <div class="container">
-        <h2>About</h2>
+        <h2>About Me</h2>
 
-        <div class="card">
+        <div class="about-card">
             <p>
-                Mechanical engineering student focused on control systems, experimental validation,
-                and real-world mechanical design. Experience in medical device testing, embedded systems,
-                and data-driven engineering workflows.
+                Mechanical Engineering student focused on control systems,
+                test engineering, and physical system design. Experience in
+                medical device prototyping, embedded systems, and experimental validation.
             </p>
 
             <div class="skills">
-                <span>Controls</span>
-                <span>MATLAB</span>
-                <span>SolidWorks</span>
-                <span>Embedded Systems</span>
-                <span>Python</span>
+                <span>🎯 Controls</span>
+                <span>📊 MATLAB</span>
+                <span>🔧 SolidWorks</span>
+                <span>⚙️ Embedded Systems</span>
+                <span>🐍 Python</span>
             </div>
         </div>
     </div>
@@ -325,33 +605,45 @@ footer {
 
         <div class="grid">
 
-            <div class="project-preview">
-                <h3>Fluid Control System</h3>
-                <p>Closed-loop syringe pump with real-time pressure feedback and PID tuning.</p>
+            <div class="card" onclick="window.location.href='projects/hologic-fluid-management.html'" style="cursor: pointer;">
+                <div class="card-icon">🏥</div>
+                <h3>Hologic Fluid Management System</h3>
+                <p>
+                    Closed-loop syringe pump system with real-time pressure feedback
+                    and PID tuning for improved flow stability in medical devices.
+                </p>
                 <div class="skills">
-                    <span>PID</span>
+                    <span>PID Control</span>
                     <span>Sensors</span>
-                    <span>Control</span>
+                    <span>Testing</span>
                 </div>
             </div>
 
-            <div class="project-preview">
+            <div class="card" onclick="alert('Coming soon!')">
+                <div class="card-icon">📡</div>
                 <h3>Sensor Acquisition System</h3>
-                <p>UART pressure sensor interface with CRC validation and data parsing.</p>
+                <p>
+                    UART-based pressure sensor interface with CRC validation and
+                    real-time data processing for embedded systems.
+                </p>
                 <div class="skills">
                     <span>ESP32</span>
-                    <span>UART</span>
                     <span>Embedded</span>
+                    <span>Signals</span>
                 </div>
             </div>
 
-            <div class="project-preview">
+            <div class="card" onclick="alert('Coming soon!')">
+                <div class="card-icon">⚒️</div>
                 <h3>Mechanical Test Rig</h3>
-                <p>Custom test apparatus for validating fluid system performance.</p>
+                <p>
+                    Designed and built a custom test apparatus for validating
+                    fluid system performance with precision control.
+                </p>
                 <div class="skills">
                     <span>CAD</span>
+                    <span>3D Printing</span>
                     <span>Fabrication</span>
-                    <span>Testing</span>
                 </div>
             </div>
 
@@ -364,10 +656,10 @@ footer {
     <div class="container">
         <h2>Resume</h2>
 
-        <div class="card">
-            <p>Download or view my resume.</p>
+        <div class="about-card">
+            <p>Download or view my resume to learn more about my experience and qualifications.</p>
             <br>
-            <a href="#" class="btn primary">View Resume</a>
+            <a href="#" class="btn btn-primary">View Resume</a>
         </div>
     </div>
 </section>
@@ -375,18 +667,19 @@ footer {
 <!-- CONTACT -->
 <section id="contact">
     <div class="container">
-        <h2>Contact</h2>
+        <h2>Get In Touch</h2>
 
-        <div class="card">
-            <p>Email: your@email.com</p>
-            <p>GitHub: github.com/yourname</p>
-            <p>LinkedIn: linkedin.com/in/yourname</p>
+        <div class="about-card">
+            <p style="margin-bottom: 20px;">Feel free to reach out to me through any of these channels:</p>
+            <p><strong>Email:</strong> your@email.com</p>
+            <p><strong>GitHub:</strong> <a href="#" target="_blank">github.com/KieranDemp</a></p>
+            <p><strong>LinkedIn:</strong> <a href="#" target="_blank">linkedin.com/in/kierandemp</a></p>
         </div>
     </div>
 </section>
 
 <footer>
-    © 2026 Kieran Dempsey
+    © 2026 Kieran Dempsey • Engineering Portfolio
 </footer>
 
 </body>
